@@ -1,0 +1,135 @@
+
+### Create Customer
+POST http://localhost:4004/sales/Customers
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "city": "Mumbai",
+  "creditLimit": 50000
+}
+
+### Create Order
+POST http://localhost:4004/sales/SalesOrders
+Content-Type: application/json
+
+{
+  "orderNumber": "SO-001",
+  "customer_ID": "REPLACE-CUSTOMER-ID",
+  "orderDate": "2026-06-08",
+  "status": "New",
+  "netAmount": 1000,
+  "taxAmount": 180,
+  "grossAmount": 1180
+}
+
+###
+
+
+
+@base = http://localhost:4004/sales
+
+
+### =====================================================
+### GET ALL ORDERS
+### =====================================================
+
+
+GET http://localhost:4004/sales/SalesOrders
+
+
+### =====================================================
+### CONFIRM ORDER
+### =====================================================
+
+POST {{base}}/confirmOrder
+Content-Type: application/json
+
+{
+  "ID": "PASTE-ORDER-ID"
+}
+
+
+### =====================================================
+### CANCEL ORDER
+### =====================================================
+
+POST {{base}}/cancelOrder
+Content-Type: application/json
+
+{
+  "ID": "PASTE-ORDER-ID",
+  "reason": "Customer changed mind"
+}
+
+
+### =====================================================
+### SHIP ORDER
+### =====================================================
+
+POST {{base}}/shipOrder
+Content-Type: application/json
+
+{
+  "ID": "PASTE-ORDER-ID",
+  "trackingNumber": "TRK-2026-001",
+  "carrier": "BlueDart"
+}
+
+
+### =====================================================
+### GET SINGLE ORDER
+### =====================================================
+
+GET http://localhost:4004/sales/SalesOrders
+
+
+### =====================================================
+### DELETE ORDER
+### =====================================================
+
+DELETE http://localhost:4004/sales/SalesOrders(1eca0362-f2d7-488f-8976-e54ecf765a10)
+
+
+
+
+
+###existing orders first
+GET http://localhost:4004/sales/SalesOrders
+
+
+### Confirm Order
+
+POST http://localhost:4004/sales/confirmOrder
+Content-Type: application/json
+
+{
+  "ID":"1eca0362-f2d7-488f-8976-e54ecf765a10"
+}
+
+
+
+### Bulk Confirm Orders
+POST http://localhost:4004/sales/bulkConfirm
+Content-Type: application/json
+
+{
+  "orderIds": [
+    "1eca0362-f2d7-488f-8976-e54ecf765a10"
+  ]
+}
+
+### =====================================================
+### GET ORDER STATS
+### =====================================================
+
+GET http://localhost:4004/sales/getOrderStats(year=2026,month=6)
+
+
+### =====================================================
+### GET TOP CUSTOMERS
+### =====================================================
+
+GET http://localhost:4004/sales/getTopCustomers(limit=3)
+

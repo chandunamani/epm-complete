@@ -1,0 +1,59 @@
+# node_modules/
+# target/
+# _out/
+# gen/
+
+# .cdsrc-private.json
+# default-*.json
+# *.sqlite
+
+# # MTA
+# mta_archives/
+# *_mta_build_tmp
+# *.mtar
+
+# # Other
+# .DS_Store
+
+# # @cap-js/cds-typer
+# @cds-models
+
+
+# Node.js
+node_modules/
+package-lock.json
+
+# CAP generated files
+gen/
+app/*/dist/
+
+# Database files (local SQLite)
+db/*.db
+db/*.sqlite
+*.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment files (NEVER commit secrets!)
+.env
+default-env.json
+*.pem
+*.key
+
+# Build artifacts
+dist/
+mta_archives/
+*.mtar
+
+# Logs
+*.log
+npm-debug.log*

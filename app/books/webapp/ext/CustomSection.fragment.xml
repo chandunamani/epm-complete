@@ -1,0 +1,26 @@
+<core:FragmentDefinition
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m">
+
+    <VBox id="poSummaryBox" class="sapUiSmallMargin">
+
+        <Title
+            id="poSummaryTitle"
+            text="Purchase Order Summary"
+            level="H3"/>
+
+        <ObjectStatus
+            id="poStatus"
+            text="{status}"
+            state="{= ${status} === 'APPROVED' ? 'Success' :
+                     ${status} === 'REJECTED' ? 'Error' :
+                     'Warning'}"/>
+
+        <ProgressIndicator
+            id="poProgress"
+            percentValue="{completion}"
+            displayValue="{= ${completion} + '%'}"/>
+
+    </VBox>
+
+</core:FragmentDefinition>

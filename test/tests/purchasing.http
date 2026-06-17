@@ -1,0 +1,73 @@
+
+GET http://localhost:4004/purchasing/Suppliers
+
+
+
+### CREATE NEW PURCHASE ORDER
+POST http://localhost:4004/purchasing/PurchaseOrders
+Content-Type: application/json
+
+{
+  "poNumber": "PO-001",
+  "supplier_ID": "REAL-SUPPLIER-ID",
+  "orderDate": "2026-06-08",
+  "status": "Draft"
+}
+
+### GET ALL PURCHASE ORDERS
+GET http://localhost:4004/purchasing/PurchaseOrders
+
+
+### ═══════════════════════════════════════════════
+### STEP 4: Get PO Summary (bound function)
+POST http://localhost:4004/purchasing/PurchaseOrders(REAL-PO-ID)/PurchasingService.submit
+Content-Type: application/json
+
+{}
+
+### GET PO SUMMARY
+GET http://localhost:4004/purchasing/Suppliers
+
+
+
+### TESTING THE COMPLETE FLOW
+POST http://localhost:4004/purchasing/PurchaseOrders
+Content-Type: application/json
+
+{
+  "poNumber": "PO-001",
+  "supplier_ID": "11111111-1111-1111-1111-111111111111",
+  "orderDate": "2026-06-08",
+  "status": "Draft"
+}
+
+
+### CONFIRM THE PO
+
+POST http://localhost:4004/purchasing/PurchaseOrders(a5621db7-72a7-4a69-8309-f46f780b3993)/PurchasingService.submit
+Content-Type: application/json
+
+{}
+
+### GET THE UPDATED PO
+POST http://localhost:4004/purchasing/PurchaseOrders(a5621db7-72a7-4a69-8309-f46f780b3993)/PurchasingService.approve
+Content-Type: application/json
+
+{
+  "comment": "Approved"
+}
+
+### RECEIVE THE PO
+POST http://localhost:4004/purchasing/PurchaseOrders(a5621db7-72a7-4a69-8309-f46f780b3993)/PurchasingService.receive
+Content-Type: application/json
+
+{
+  "receivedQty": 10,
+  "notes": "All goods received successfully"
+}
+
+### GET THE FINAL PO SUMMARY
+GET http://localhost:4004/purchasing/PurchaseOrders(a5621db7-72a7-4a69-8309-f46f780b3993)/PurchasingService.getSummary()
+
+### GET DASHBOARD DATA
+GET http://localhost:4004/purchasing/getPurchasingDashboard()
