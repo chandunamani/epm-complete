@@ -22,3 +22,4 @@ Branch A change
 ## Learn More
 
 Learn more at <https://cap.cloud.sap>.
+Branch B change
