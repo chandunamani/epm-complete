@@ -1,47 +1,70 @@
-
 using { com.epm as db } from '../db/schema';
-@odata.draft.enabled
-entity PurchaseOrders
+
+service PurchasingService
+@(path : '/purchasing')
+@(requires : 'authenticated-user')
+{
+
+    @odata.draft.enabled
+    entity PurchaseOrders
+    @(restrict: [
+        { grant: 'READ', to: 'Viewer' },
+        { grant: ['READ','WRITE'], to: 'PurchaseManager' },
+        { grant: '*', to: 'Administrator' }
+    ])
     as projection on db.PurchaseOrders
     actions {
+
+        @requires: 'PurchaseManager'
         action submit();
-        action approve(comment : String);
-        action reject(reason : String);
+
+        @requires: 'PurchaseManager'
+        action approve(
+            comment : String
+        );
+
+        @requires: 'PurchaseManager'
+        action reject(
+            reason : String
+        );
+
+        @requires: 'PurchaseManager'
         action receive();
+
     };
 
-service PurchasingService @(path : '/purchasing') {
-
-    entity PurchaseOrders
-        as projection on db.PurchaseOrders
-        actions {
-
-            action submit();
-
-            action approve(
-                comment : String
-            );
-
-            action reject(
-                reason : String
-            );
-
-            action receive();
-
-        };
-
     entity PurchaseOrderItems
-        as projection on db.PurchaseOrderItems;
+    @(restrict: [
+        { grant: 'READ', to: 'Viewer' },
+        { grant: ['READ','WRITE'], to: 'PurchaseManager' },
+        { grant: '*', to: 'Administrator' }
+    ])
+    as projection on db.PurchaseOrderItems;
 
     @readonly
     entity Suppliers
-        as projection on db.Suppliers;
+    @(restrict: [
+        { grant: 'READ', to: 'Viewer' },
+        { grant: 'READ', to: 'PurchaseManager' },
+        { grant: '*', to: 'Administrator' }
+    ])
+    as projection on db.Suppliers;
 
     @readonly
     entity Products
-        as projection on db.Products;
+    @(restrict: [
+        { grant: 'READ', to: 'Viewer' },
+        { grant: 'READ', to: 'PurchaseManager' },
+        { grant: '*', to: 'Administrator' }
+    ])
+    as projection on db.Products;
 
     entity Attachments
-        as projection on db.Attachments;
+    @(restrict: [
+        { grant: 'READ', to: 'Viewer' },
+        { grant: ['READ','WRITE'], to: 'PurchaseManager' },
+        { grant: '*', to: 'Administrator' }
+    ])
+    as projection on db.Attachments;
 
 }

@@ -1,0 +1,56 @@
+{
+  "xsappname": "po-management",
+  "tenant-mode": "dedicated",
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.Read",
+      "description": "Read PO data"
+    },
+    {
+      "name": "$XSAPPNAME.Create",
+      "description": "Create and edit Purchase Orders"
+    },
+    {
+      "name": "$XSAPPNAME.Approve",
+      "description": "Approve or reject Purchase Orders"
+    },
+    {
+      "name": "$XSAPPNAME.Delete",
+      "description": "Delete Purchase Orders"
+    },
+    {
+      "name": "$XSAPPNAME.Admin",
+      "description": "Full administrative access"
+    }
+  ],
+  "attributes": [],
+  "role-templates": [
+    {
+      "name": "Viewer",
+      "description": "Read-only access",
+      "scope-references": [
+        "$XSAPPNAME.Read"
+      ]
+    },
+    {
+      "name": "PurchaseManager",
+      "description": "Create and approve POs",
+      "scope-references": [
+        "$XSAPPNAME.Read",
+        "$XSAPPNAME.Create",
+        "$XSAPPNAME.Approve"
+      ]
+    },
+    {
+      "name": "Administrator",
+      "description": "Full access",
+      "scope-references": [
+        "$XSAPPNAME.Read",
+        "$XSAPPNAME.Create",
+        "$XSAPPNAME.Approve",
+        "$XSAPPNAME.Delete",
+        "$XSAPPNAME.Admin"
+      ]
+    }
+  ]
+}

@@ -57,3 +57,5 @@ mta_archives/
 # Logs
 *.log
 npm-debug.log*
+# added by cds
+.cdsrc-private.json
