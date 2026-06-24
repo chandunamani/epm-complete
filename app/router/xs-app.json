@@ -1,6 +1,5 @@
-
 {
-  "welcomeFile": "/purchasing/Products",
+  "welcomeFile": "/project1",
   "authenticationMethod": "route",
   "routes": [
     {
