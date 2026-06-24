@@ -78,7 +78,7 @@ entity PurchaseOrders : cuid, managed {
 
     priority      : Priority;
 
-    rating        : Integer;
+    rating        : Decimal(3,1);
     confirmed        : Boolean;
 
     completion    : Integer;
